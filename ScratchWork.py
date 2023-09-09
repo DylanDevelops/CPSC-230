@@ -1,19 +1,15 @@
-dogs = [
-    {
-        "name": "Oreo",
-        "breed": "Border Collie/Labrador",
-        "age": 5,
-    },
-    {
-        "name": "Summit",
-        "breed": "Whippet/Labrador",
-        "age": 7,
-    }
-]
-print(dogs[0]["name"])
+# Define a function that checks if a number is even and returns a boolean value
+def is_even(number):
+    if number % 2 == 0:
+        return True
+    else:
+        return False
 
+# Call the function and store the returned value in a variable
+result = is_even(6)
 
-if dogs[0]["name"] == "Oreo":
-    print("Oreo is in the database")
+# Print the result
+if result:
+    print("The number is even.")
 else:
-    print("Oreo is not in the database")
+    print("The number is odd.")
