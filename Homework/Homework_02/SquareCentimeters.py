@@ -1,20 +1,36 @@
 # --------------------------------------------
 # Dylan Ravel
 # September 11, 2023
-# Celsius Assignment
+# Homework 02
+# 1. Dylan Ravel
 # References
 # 1. 
 #
 # README
-# 
+# This code converts the volume of a tank in liters to the
+# footprint of the tank in square centimeters, while
+# displaying the current status to the user.
 # -----------------------------------------------
 
-'''
-Create a program called “SquareCentimeters.py”
-Say the user has a pet reptile. When they are going to buy a tank, they find that the size is typically given in liters. The user wants to calculate the footprint of a tank in square centimeters so that they are sure their pet will have enough space to comfortably move around. Assume the tank is a perfect cube (length, width, and height are the same) and write a program that calculates the area of the footprint of the tank in square centimeters.
-1) Prompt the user for the volume of the tank in liters
-2) Prompt the user for the species of reptile they plan to adopt.
-3) Calculate the footprint of the tank in square centimeters (hint, you can use a function in the math module to calculate the cube root)
-4) Display the area to the user
-'''
+# Imports the math module
+import math
 
+# Greets the user, asks for the volume of the tank in liters, 
+# converts it to a float and finally stores it in a variable 
+# called "tankInLiters". It also asked for a reptile species
+# just for fun.
+print("Welcome to reptile tank calculator!")
+tankInLiters = float(input("Please enter the volume of your tank in liters: "))
+speciesOfReptile = input("Please enter the species of your reptile: ")
+
+# Calculates the side length of the tank in centimeters by
+# taking the cube root of the tank in liters times 1000.
+sideLengthInCm = math.pow(tankInLiters * 1000, 1/3)
+
+# Then it calculates the footprint of the tank by squaring
+# the side length in centimeters and rounding it to 2 decimal
+# places.
+footprintOfTank = round(math.pow(sideLengthInCm, 2), 2)
+
+# Displays the footprint of the tank to the user.
+print("The footprint of your" + speciesOfReptile + "'s tank is " + str(footprintOfTank) + " square centimeters.")
