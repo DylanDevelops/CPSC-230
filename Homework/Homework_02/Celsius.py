@@ -1,7 +1,7 @@
 # --------------------------------------------
 # Dylan Ravel
 # September 11, 2023
-# Celsius Assignment
+# Homework 02 - Celsius Assignment
 # References
 # 1. https://www.uptodate.com/contents/calculator-temperature-unit-conversions
 #

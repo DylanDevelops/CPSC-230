@@ -1,10 +1,12 @@
 # --------------------------------------------
 # Dylan Ravel
-# September 11, 2023
-# Homework 02
-# 1. Dylan Ravel
+# September 12, 2023
+# Homework 02 - Square Centimeters Assignment
+# Collaborators:
+# 1. Divi Newton
+# 2. Sammy Rokaw
 # References
-# 1. 
+# 1. https://www.tutorialspoint.com/python-program-to-calculate-the-cube-root-of-the-given-number
 #
 # README
 # This code converts the volume of a tank in liters to the

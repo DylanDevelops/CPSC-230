@@ -1,7 +1,7 @@
 # --------------------------------------------
 # Dylan Ravel
 # September 11, 2023
-# Total Price Assignment
+# Homework 02 - Total Price Assignment
 # References
 # 1. https://www.w3schools.com/python/ref_func_round.asp
 #
