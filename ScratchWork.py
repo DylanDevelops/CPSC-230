@@ -1,17 +1,9 @@
-temperature = 75.3
-isItRaining = True # Needs to be capitol "T"
+x1 = (1, 2, 3, 4, 5)
+x2 = [1, 2, 3, 4, 5]
+x3 = {"1": 1, "2": 2, "3": 3, "4": 4, "5": 5}
+x4 = {1, 2, 3, 4, 5}
 
-if temperature <= 60 and isItRaining: # needs colon
-    print("You need a jacket and umbrella!")
-
-elif temperature > 60 and isItRaining: # needs colon
-    print("You don't need a jacket only an umbrella!") # needs quotation marks
-
-elif temperature <= 60 and not isItRaining: #needs colon
-    print("You need a jacket but not an umbrella!")
-
-elif temperature > 60 and not isItRaining: # Needs to be lowercase "not" and colon
-    print("You need some sunscreen!")
-
-else: #needs colon
-    print("WHERE ARE YOU?")
+print(type(x1))
+print(type(x2))
+print(type(x3))
+print(type(x4))
