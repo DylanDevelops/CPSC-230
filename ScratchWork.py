@@ -1,9 +1,12 @@
-x1 = (1, 2, 3, 4, 5)
-x2 = [1, 2, 3, 4, 5]
-x3 = {"1": 1, "2": 2, "3": 3, "4": 4, "5": 5}
-x4 = {1, 2, 3, 4, 5}
+userNum = input("Enter a number greater than 100: ")
+while not userNum.isdigit():
+    print("That's not a number!")
+    userNum = input("Enter a number greater than 100: ")
 
-print(type(x1))
-print(type(x2))
-print(type(x3))
-print(type(x4))
+sum = 0
+number = 0
+while number <= int(userNum):
+    if number % 2 == 0:
+        sum += number
+    number += 1
+print(sum)
