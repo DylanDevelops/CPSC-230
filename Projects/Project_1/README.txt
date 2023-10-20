@@ -1,6 +1,6 @@
 --------------------------------------------
 Dylan Ravel
-October 17th, 2023
+October 20th, 2023
 Project 1
 
 Collaborators: 
@@ -10,7 +10,7 @@ References:
     1. https://book.pythontips.com/en/latest/for_-_else.html
     2. https://realpython.com/python-sleep/
     3. https://www.geeksforgeeks.org/ternary-operator-in-python/
-    4. 
+    4. https://www.programiz.com/python-programming/global-keyword
 
 README
 
