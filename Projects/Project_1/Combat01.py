@@ -138,7 +138,7 @@ while playing:
     difficulty = input("\nChoose the difficulty level ['Easy', 'Medium', 'Hard']: ")
     done = False
     while not done:
-        if difficulty == "easy":
+        if difficulty.lower() == "easy":
             # set all values to the easy values
             player['health'] += 20
             player['attack'] += 6
@@ -152,7 +152,7 @@ while playing:
             break
         elif difficulty.lower() == "medium":
             # keep all the same values if medium
-            pass
+            break
         elif difficulty.lower() == "hard":
             # set all the values to hard values
             player['health'] -= 20
