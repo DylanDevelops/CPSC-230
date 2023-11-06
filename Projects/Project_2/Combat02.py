@@ -23,6 +23,7 @@ characters = [
             "description": "Calls upon divine power to heal wounds.", # description of the special ability
             "type": 0, # Is it a healing ability (0) or a damage ability (1)
             "value": 50, # how much health (0) or damage (1) it inflicts upon ourself or opponent
+            "used": False, # this is changed if the ability has been used since they are single use abilities
         },
         "winMessage": "May the divine have mercy on your soul.", # their winning message
         "loseMessage": "I have been defeated, but my faith remains unbroken." # their losing message
@@ -36,8 +37,9 @@ characters = [
         "special": {
             "name": "Rage",
             "description": "Enters a state of rage, increasing attack power.",
-            "type": 0,
+            "type": 1,
             "value": 25,
+            "used": False,
         },
         "winMessage": "You fought well, but strength alone cannot overcome skill.",
         "loseMessage": "I have been defeated, but I will return stronger than ever."
@@ -53,6 +55,7 @@ characters = [
             "description": "Calls upon the power of nature to heal.",
             "type": 0,
             "value": 15,
+            "used": False,
         },
         "winMessage": "The power of nature has triumphed over your technology.",
         "loseMessage": "I have been defeated, but the spirits of the forest will guide me to victory next time."
@@ -68,6 +71,7 @@ characters = [
             "description": "Enters a meditative state to heal wounds.",
             "type": 0,
             "value": 50,
+            "used": False,
         },
         "winMessage": "Your mind was weak, but your spirit was strong.",
         "loseMessage": "I have been defeated, but my mind remains sharp and my spirit unbroken."
@@ -83,6 +87,7 @@ characters = [
             "description": "Calls upon a dark entity to deal damage.",
             "type": 1,
             "value": 20,
+            "used": False,
         },
         "winMessage": "Your light was no match for the darkness within me.",
         "loseMessage": "I have been defeated, but the light will always triumph over darkness."
@@ -98,6 +103,7 @@ characters = [
             "description": "Plays a soothing song that heals.",
             "type": 0,
             "value": 15,
+            "used": False,
         },
         "winMessage": "Your silence has been broken by the power of music!",
         "loseMessage": "I have been defeated, but the power of music will always live on."
@@ -113,6 +119,7 @@ characters = [
             "description": "Unleashes a powerful blast of arcane energy.",
             "type": 1,
             "value": 20,
+            "used": False,
         },
         "winMessage": "Your knowledge was no match for my mastery of the arcane.",
         "loseMessage": "I have been defeated, but my thirst for knowledge remains unquenched."
@@ -128,6 +135,7 @@ characters = [
             "description": "Calls upon the power of nature to heal.",
             "type": 0,
             "value": 20,
+            "used": False,
         },
         "winMessage": "The wilderness has claimed another victim.",
         "loseMessage": "I have been defeated, but the wilderness will always be my home."
@@ -143,6 +151,7 @@ characters = [
             "description": "Calls upon divine power to smite enemies.",
             "type": 1,
             "value": 25,
+            "used": False,
         },
         "winMessage": "Your evil has been vanquished by the power of righteousness!",
         "loseMessage": "I have been defeated, but the power of righteousness will always triumph over evil."
@@ -158,6 +167,7 @@ characters = [
             "description": "Taps into the inherent power of the bloodline healing back health.",
             "type": 0,
             "value": 22,
+            "used": False,
         },
         "winMessage": "Your mortal blood was no match for the power of my bloodline.",
         "loseMessage": "I have been defeated, but the power of my bloodline will always live on."
@@ -169,7 +179,7 @@ player = {}
 computer = {}
 
 # declares a list of adjectives that can be used later in the code
-adjectives = ["glorious", "evil", "fun", "powerful", "brave", "rascal like", "bombastic", "nerdy", "spooky", "cringe", "mysterious", "goofy", "sad"]
+adjectives = ["glorious", "evil", "fun", "powerful", "brave", "rascal like", "bombastic", "nerdy", "spooky", "cringe", "mysterious", "goofy", "sad", "quirky", "absurd", "bizarre", "outlandish", "chucklesome", "comical", "whimsical", "eccentric", "sweaty", "viscus", "enraged", "slimy", "moist", "gluttonous", "depressed", "ugly"]
 
 # Sets the current status to playing. This is used later to decide if the user wants to end the game or continue to play
 playing = True
@@ -192,12 +202,18 @@ while playing:
     # this code checks if the choice is valid or not
     splitPlayerChoice = []
     done = False
+    info_flag = False
     while not done:
         for character in characters:
             splitPlayerChoice = playerChoice.split(" ")
             if len(splitPlayerChoice) > 1 and character['name'] == splitPlayerChoice[0].lower() and splitPlayerChoice[1].lower() == '-i':
-                print(f"\nThe {character['name'].capitalize()}'s stats include:\n\nHealth: {character['health']}\n\nMinimum Attack: {character['attackModifier'] + 1}\n\nMaximum Attack: {character['attackModifier'] + character['attackDice']}\n\nMaximum Dodged Damage: {character['dodgeDice']}")
+                # Tells the user the stats of the character including the special ability
+                print(f"\nThe {character['name'].capitalize()}'s stats include:\n     Health: {character['health']}\n     Minimum Attack: {character['attackModifier'] + 1}\n     Maximum Attack: {character['attackModifier'] + character['attackDice']}\n     Maximum Dodged Damage: {character['dodgeDice']}\nSpecial Ability Information:\n     Name: {character['special']['name']}\n     Description: {character['special']['description']}\n     {'Heals self by: ' + str(character['special']['value']) + 'hp' if character['special']['type'] == 0 else 'Damages opponent by: ' + str(character['special']['value']) + 'hp'}")
+                print("\nNOTE: THESE STATS CHANGE SLIGHTLY BASED ON DIFFICULTY SELECTED IN NEXT QUESTION!")
 
+                # sets an info flag = True to be used later
+                info_flag = True
+            
             elif character['name'] == playerChoice.lower():
                 # if the character exists, clone the stats from the characters list to the new value 'player' then break out of the loop and continue on
                 player = character.copy()
@@ -210,7 +226,19 @@ while playing:
                 done = True
                 break
 
+            elif info_flag:
+                # if they previously had gotten the stats of the user
+                print("\nPlease enter the name of the character you would like to play as.")
+                print("The options are the Cleric, Barbarian, Druid, Monk, Warlock, Bard, Wizard, Ranger, Paladin, and Sorcerer.")
+                print("To get statistics on these characters, type their name plus -i. (Ex: Wizard -i)")
+                print("To let the arena choose a character for you, type 'RANDOM'")
+                playerChoice = input("Your choice: ")
+
+                # Resets the info flag bool
+                info_flag = False
+
             else:
+                # if no code is ready to take the user input, have them input again
                 print("\nThat is not a valid character. Please make sure you spelled it correctly!")
                 playerChoice = input("Please enter your desired character: ")
 
@@ -227,6 +255,7 @@ while playing:
             player['attackModifier'] += 2
             player['attackDice'] += 1
             player['dodgeDice'] += 1
+            player['special']['value'] += 5
 
             computer['health'] -= 10
             computer['attackModifier'] -= 2
@@ -244,6 +273,7 @@ while playing:
             player['attackModifier'] -= 2
             player['attackDice'] -= 1
             player['dodgeDice'] -= 1
+            player['special']['value'] -= 5
 
             computer['health'] += 10
             computer['attackModifier'] += 2
@@ -262,7 +292,7 @@ while playing:
     print(f"\nYour opponent will be the {random.choice(adjectives)} {computer['name'].capitalize()}. Their stats are:\nHealth: {computer['health']} hp\nMinimum Attack: {computer['attackModifier'] + 1} dmg\nMaximum Attack: {computer['attackModifier'] + computer['attackDice']} dmg\nMaximum Dodged Damage: {computer['dodgeDice']} dmg")
 
     # initiates a countdown timer until it is time to play
-    time.sleep(3)
+    time.sleep(1.5)
     print("\n3")
     time.sleep(1)
     print("2")
@@ -323,10 +353,24 @@ while playing:
             # tells the user what happened
             print(f"\nYou and the {computer['name']} both dodged each other resulting in no one taking damage!")
 
-        # WHATTTTTTT     
-        else:
-            # !!! It is physically impossible for this to ever be called but if by some miracle it does, god help us. !!!
-            print("WHAT!???!?!?!?!!???! HOW DID THIS HAPPEN")
+        # The player used a special ability if the code gets to this else statement
+        elif playerChoice == 2:
+            if player["special"]["type"] == 0:
+                # Healing ability
+                print(f"\nYou did something {random.choice(adjectives)}... You used {player['special']['name']} to heal yourself!")
+                print(f"You healed yourself by {player['special']['value']} hp!")
+
+                player['health'] += player['special']['value']
+
+            elif player["special"]["type"] == 1:
+                # Damage Ability
+                print(f"\nYou did something {random.choice(adjectives)}... You used {player['special']['name']} on the {computer['name'].capitalize()}")
+                print(f"You attacked the {computer['name']}, taking {player['special']['value']} hp from them!")
+
+                computer['health'] -= player['special']['value']
+
+            player['special']['used'] = True
+            print(f"\nNo matter what the {computer['name']} tried to do, it was useless and they didn't get a move in this round.")
 
     # this loop runs as long as the player and computer health is above 0 otherwise it will break
     # this is basically the main loop for the game
@@ -335,9 +379,15 @@ while playing:
         print(f"You have:\n    {player['health']} hp")
         print(f"The {computer['name']} has:\n    {computer['health']} hp")
 
-        # asks if the player would like to attack or dodge
-        print("\nWould you like to attack or dodge?")
-        playerChoice = input("Enter your choice (A) or (D): ")
+        # checks what to display to the user based on if they have used their special or not
+        if player["special"]["used"]:
+            # if they used their special ability, this is run
+            print("\nWould you like to attack or dodge?")
+            playerChoice = input("Enter your choice (A) or (D): ")
+        else:
+            # if they haven't used their special ability this is run
+            print("\nWould you like to attack, dodge, or use your single use special ability?")
+            playerChoice = input("Enter your choice (A), (D), or (S): ")
 
         # handles the logic to make sure that the choice they made is valid
         while True:
@@ -349,10 +399,26 @@ while playing:
                 # calls the function to do a new turn in the 'dodge' modifier (0)
                 PlayMove(0)
                 break
+
+            elif playerChoice.upper() == 'S' or playerChoice.upper() == 'SPECIAL':
+                # calls the function to handle playing a special move
+                if not player['special']['used']:
+                    PlayMove(2)
+                    break
+                else:
+                    # if they type S, but have already used their special ability, this is called
+                    print(f"\nYou have already used {player['special']['name']}. You can only attack or dodge for the rest of this battle!")
+                    playerChoice = input("Enter your choice (A) or (D): ")
+
             else:
                 # this is called if the choice is not valid and asks them to reenter a correct choice
                 print(f"\'{playerChoice}\' is not a valid choice.")
-                playerChoice = input("Enter your choice (A) or (D): ")
+                if player["special"]["used"]:
+                    # if they used their special ability, this is run
+                    playerChoice = input("Enter your choice (A) or (D): ")
+                else:
+                    # if they haven't used their special ability this is run
+                    playerChoice = input("Enter your choice (A), (D), or (S): ")
 
     # defines the function for handling a win
     def Win(winningStats, winningUser):
@@ -463,3 +529,6 @@ while playing:
     elif computer['health'] <= 0:
         # This is called when only the player's health is less than or equal to 0 meaning that the computer won finally calling the Win() function
         Win(player, 'player')
+    else:
+        # !!! It is physically impossible for this to ever be called but if by some miracle it does, god help us. !!!
+        print("WHAT!???!?!?!?!!???! HOW DID THIS HAPPEN!\nYOU DIDN'T LOSE OR WIN?????!!!?? OR TIE??? WTF!!!!")
