@@ -1,11 +1,24 @@
-stop = 18
-total = 0
-for number in [5, 4, 6, 4, 6, 7]:
-    print(number, end=' ')
-    total += number
-    if total > stop:
-        print('*')
-        break
-else:
-    print(f'/ {total}')
-print('done')
+class DylanMath():
+    import math
+
+    def Multiply(self, a, b):
+        return a * b
+
+    def Divide(self, a, b):
+        return a / b
+
+    def FDivide(self, a, b):
+        return a // b
+
+    def IsEven(self, a):
+        if a % 2 == 0:
+            return True
+        else:
+            return False
+
+
+
+math = DylanMath()
+
+print(math.Multiply(10, 20))
+print(math.IsEven(10))
