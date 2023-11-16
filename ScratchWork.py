@@ -15,10 +15,3 @@ class DylanMath():
             return True
         else:
             return False
-
-
-
-math = DylanMath()
-
-print(math.Multiply(10, 20))
-print(math.IsEven(10))
