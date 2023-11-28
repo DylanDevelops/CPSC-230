@@ -10,197 +10,67 @@
 import random # used to randomize values throughout the game
 import time # used to delay when something is outputted to the console to make the game last a little longer
 
+# The transcript class
 class transcript():
+    # Initializes this class and creates the file to log stuff in
     def __init__(self, gameName):
+        # Creates the filename
         self.fileName = f"{gameName}_transcript.txt"
         with open(self.fileName, 'w') as file:
             file.write('--- BEGINNING OF GAME ---\n')
 
+    # This is called when a game ends
     def End():
         with open(self.fileName, 'a') as file:
             file.write('\n--- END OF GAME ---')
 
+    # This rights stuff to the file by appending it
     def write(self, text):
         with open(self.fileName, 'a') as file:
             file.write(text + '\n')
 
+    # This prints to the console
     def print(self, text):
         print(text)
         self.write(text)
 
+    # This handles input from the user
     def input(self, prompt):
         userInput = input(prompt)
         self.write(prompt + userInput)
         return userInput
+
+# The class for characters
+class character():
+    def __init__(self, characterName, health, attackModifier, attackDice, dodgeDice, specialName, specialDescription, specialType, specialValue, winMessage, loseMessage):
+        self.characterName = characterName
+        self.health = health
+        self.attackModifier = attackModifier
+        self.attackDice = attackDice
+        self.dodgeDice = dodgeDice
+        self.specialName = specialName
+        self.specialDescription = specialDescription
+        self.specialType = specialType
+        self.specialUsed = False
+        self.winMessage = winMessage
+        self.loseMessage = loseMessage
+
+
+# Declaring all the characters that the player and computer can choose from this time using the power of classes
+cleric = character("cleric", 100, 10, 5, 3, "Divine Intervention", "Calls upon divine power to heal wounds.", 1, 25, "May the divine have mercy on your soul.", "I have been defeated, but my faith remains unbroken.")
+barbarian = character("barbarian", 120, 12, 6, 3, "Rage", "Enters a state of rage, increasing attack power.", 1, 25, "You fought well, but strength alone cannot overcome skill.", "I have been defeated, but I will return stronger than ever.")
+druid = character("druid", 90, 9, 5, 3, "Nature's Touch", "Calls upon the power of nature to heal.", 0, 15, "The power of nature has triumphed over your technology.", "I have been defeated, but the spirits of the forest will guide me to victory next time.")
+monk = character("monk", 80, 8, 4, 2, "Meditative Heal", "Enters a meditative state to heal wounds.", 0, 50, "Your mind was weak, but your spirit was strong.", "I have been defeated, but my mind remains sharp and my spirit unbroken.")
+warlock = character("warlock", 110, 11, 5, 2, "Dark Pact", "Calls upon a dark entity to deal damage.", 1, 20, "Your light was no match for the darkness within me.", "I have been defeated, but the light will always triumph over darkness.")
+bard = character("bard", 95, 9, 5, 3, "Healing Song", "Plays a soothing song that heals.", 0, 15, "Your silence has been broken by the power of music!", "I have been defeated, but the power of music will always live on.")
+wizard = character("wizard", 85, 8, 6, 3, "Arcane Blast", "Unleashes a powerful blast of arcane energy.", 1, 20, "Your knowledge was no match for my mastery of the arcane.", "I have been defeated, but my thirst for knowledge remains unquenched.")
+ranger = character("ranger", 100, 10, 5, 2, "Nature's Blessing", "Calls upon the power of nature to heal.", 0, 20, "The wilderness has claimed another victim.", "I have been defeated, but the wilderness will always be my home.")
+paladin = character("paladin", 130, 13, 3, 2, "Divine Smite", "Calls upon divine power to smite enemies.", 1, 25, "Your evil has been vanquished by the power of righteousness!", "I have been defeated, but the power of righteousness will always triumph over evil.")
+sorcerer = character("sorcerer", 100, 10, 5, 3, "Bloodline Power", "Taps into the inherent power of the bloodline healing back health.", 0, 22, "Your mortal blood was no match for the power of my bloodline.", "I have been defeated, but the power of my bloodline will always live on.")
     
-
-# Declaring all the characters that the player and computer can choose from
-characters = [
-    {
-        "name": "cleric", # name of the character
-        "health": 100, # their default health
-        "attackModifier": 10, # the minimum amount of damage they can deal
-        "attackDice": 5, # the additional amount of randomly chosen between 1 and attackDice value to be given
-        "dodgeDice": 3, # the amount of damage randomly chosen between 1 and dodgeDice value to be avoided
-        "special": { # The "special" ability data
-            "name": "Divine Intervention", # name of the special ability
-            "description": "Calls upon divine power to heal wounds.", # description of the special ability
-            "type": 0, # Is it a healing ability (0) or a damage ability (1)
-            "value": 50, # how much health (0) or damage (1) it inflicts upon ourself or opponent
-            "used": False, # this is changed if the ability has been used since they are single use abilities
-        },
-        "winMessage": "May the divine have mercy on your soul.", # their winning message
-        "loseMessage": "I have been defeated, but my faith remains unbroken." # their losing message
-    },
-    {
-        "name": "barbarian",
-        "health": 120,
-        "attackModifier": 12,
-        "attackDice": 6,
-        "dodgeDice": 3,
-        "special": {
-            "name": "Rage",
-            "description": "Enters a state of rage, increasing attack power.",
-            "type": 1,
-            "value": 25,
-            "used": False,
-        },
-        "winMessage": "You fought well, but strength alone cannot overcome skill.",
-        "loseMessage": "I have been defeated, but I will return stronger than ever."
-    },
-    {
-        "name": "druid",
-        "health": 90,
-        "attackModifier": 9,
-        "attackDice": 5,
-        "dodgeDice": 3,
-        "special": {
-            "name": "Nature's Touch",
-            "description": "Calls upon the power of nature to heal.",
-            "type": 0,
-            "value": 15,
-            "used": False,
-        },
-        "winMessage": "The power of nature has triumphed over your technology.",
-        "loseMessage": "I have been defeated, but the spirits of the forest will guide me to victory next time."
-    },
-    {
-        "name": "monk",
-        "health": 80,
-        "attackModifier": 8,
-        "attackDice": 4,
-        "dodgeDice": 2,
-        "special": {
-            "name": "Meditative Heal",
-            "description": "Enters a meditative state to heal wounds.",
-            "type": 0,
-            "value": 50,
-            "used": False,
-        },
-        "winMessage": "Your mind was weak, but your spirit was strong.",
-        "loseMessage": "I have been defeated, but my mind remains sharp and my spirit unbroken."
-    },
-    {
-        "name": "warlock",
-        "health": 110,
-        "attackModifier": 11,
-        "attackDice": 5,
-        "dodgeDice": 2,
-        "special": {
-            "name": "Dark Pact",
-            "description": "Calls upon a dark entity to deal damage.",
-            "type": 1,
-            "value": 20,
-            "used": False,
-        },
-        "winMessage": "Your light was no match for the darkness within me.",
-        "loseMessage": "I have been defeated, but the light will always triumph over darkness."
-    },
-    {
-        "name": "bard",
-        "health": 95,
-        "attackModifier": 9,
-        "attackDice": 5,
-        "dodgeDice": 3,
-        "special": {
-            "name": "Healing Song",
-            "description": "Plays a soothing song that heals.",
-            "type": 0,
-            "value": 15,
-            "used": False,
-        },
-        "winMessage": "Your silence has been broken by the power of music!",
-        "loseMessage": "I have been defeated, but the power of music will always live on."
-    },
-    {
-        "name": "wizard",
-        "health": 85,
-        "attackModifier": 8,
-        "attackDice": 6,
-        "dodgeDice": 3,
-        "special": {
-            "name": "Arcane Blast",
-            "description": "Unleashes a powerful blast of arcane energy.",
-            "type": 1,
-            "value": 20,
-            "used": False,
-        },
-        "winMessage": "Your knowledge was no match for my mastery of the arcane.",
-        "loseMessage": "I have been defeated, but my thirst for knowledge remains unquenched."
-    },
-    {
-        "name": "ranger",
-        "health": 100,
-        "attackModifier": 10,
-        "attackDice": 5,
-        "dodgeDice": 2,
-        "special": {
-            "name": "Nature's Blessing",
-            "description": "Calls upon the power of nature to heal.",
-            "type": 0,
-            "value": 20,
-            "used": False,
-        },
-        "winMessage": "The wilderness has claimed another victim.",
-        "loseMessage": "I have been defeated, but the wilderness will always be my home."
-    },
-    {
-        "name": "paladin",
-        "health": 130,
-        "attackModifier": 13,
-        "attackDice": 3,
-        "dodgeDice": 2,
-        "special": {
-            "name": "Divine Smite",
-            "description": "Calls upon divine power to smite enemies.",
-            "type": 1,
-            "value": 25,
-            "used": False,
-        },
-        "winMessage": "Your evil has been vanquished by the power of righteousness!",
-        "loseMessage": "I have been defeated, but the power of righteousness will always triumph over evil."
-    },
-    {
-        "name": "sorcerer",
-        "health": 100,
-        "attackModifier": 10,
-        "attackDice": 5,
-        "dodgeDice": 3,
-        "special": {
-            "name": "Bloodline Power",
-            "description": "Taps into the inherent power of the bloodline healing back health.",
-            "type": 0,
-            "value": 22,
-            "used": False,
-        },
-        "winMessage": "Your mortal blood was no match for the power of my bloodline.",
-        "loseMessage": "I have been defeated, but the power of my bloodline will always live on."
-    },
-]
-
 # declares two variables that will eventually be set to a copy of the chosen characters from above
-player = {}
-computer = {}
+player = None
+computer = None
 
 # declares a list of adjectives that can be used later in the code
 adjectives = ["glorious", "evil", "fun", "powerful", "brave", "rascal like", "bombastic", "nerdy", "spooky", "cringe", "mysterious", "goofy", "sad", "quirky", "absurd", "bizarre", "outlandish", "chucklesome", "comical", "whimsical", "eccentric", "sweaty", "viscus", "enraged", "slimy", "moist", "gluttonous", "depressed", "ugly"]
@@ -209,8 +79,8 @@ adjectives = ["glorious", "evil", "fun", "powerful", "brave", "rascal like", "bo
 playing = True
 while playing:
     # I clear anything that could be left over from a previous playthrough
-    player.clear()
-    computer.clear()
+    player = None
+    computer = None
 
     # Clears the transcript and saveFile name variables
     t = None
