@@ -54,7 +54,7 @@ class character():
             "health": 100, # their default health
             "attackModifier": 10, # the minimum amount of damage they can deal
             "attackDice": 5, # the additional amount of randomly chosen between 1 and attackDice value to be given
-            "dodgeDice": 3, # the amount of damage randomly chosen between 1 and dodgeDice value to be avoided
+            "AC": 13, # The incoming damage must be higher than this amount for an opponent to deal damage to you
             "special": { # The "special" ability data
                 "name": "Divine Intervention", # name of the special ability
                 "description": "Calls upon divine power to heal wounds.", # description of the special ability
@@ -70,7 +70,7 @@ class character():
             "health": 120,
             "attackModifier": 12,
             "attackDice": 6,
-            "dodgeDice": 3,
+            "AC": 8,
             "special": {
                 "name": "Rage",
                 "description": "Enters a state of rage, increasing attack power.",
@@ -86,7 +86,7 @@ class character():
             "health": 90,
             "attackModifier": 9,
             "attackDice": 5,
-            "dodgeDice": 3,
+            "AC": 10,
             "special": {
                 "name": "Nature's Touch",
                 "description": "Calls upon the power of nature to heal.",
@@ -102,7 +102,7 @@ class character():
             "health": 80,
             "attackModifier": 8,
             "attackDice": 4,
-            "dodgeDice": 2,
+            "AC": 15,
             "special": {
                 "name": "Meditative Heal",
                 "description": "Enters a meditative state to heal wounds.",
@@ -118,7 +118,7 @@ class character():
             "health": 110,
             "attackModifier": 11,
             "attackDice": 5,
-            "dodgeDice": 2,
+            "AC": 8,
             "special": {
                 "name": "Dark Pact",
                 "description": "Calls upon a dark entity to deal damage.",
@@ -134,7 +134,7 @@ class character():
             "health": 95,
             "attackModifier": 9,
             "attackDice": 5,
-            "dodgeDice": 3,
+            "AC": 10,
             "special": {
                 "name": "Healing Song",
                 "description": "Plays a soothing song that heals.",
@@ -150,7 +150,7 @@ class character():
             "health": 85,
             "attackModifier": 8,
             "attackDice": 6,
-            "dodgeDice": 3,
+            "AC": 12,
             "special": {
                 "name": "Arcane Blast",
                 "description": "Unleashes a powerful blast of arcane energy.",
@@ -166,7 +166,7 @@ class character():
             "health": 100,
             "attackModifier": 10,
             "attackDice": 5,
-            "dodgeDice": 2,
+            "AC": 7,
             "special": {
                 "name": "Nature's Blessing",
                 "description": "Calls upon the power of nature to heal.",
@@ -182,7 +182,7 @@ class character():
             "health": 130,
             "attackModifier": 13,
             "attackDice": 3,
-            "dodgeDice": 2,
+            "AC": 6,
             "special": {
                 "name": "Divine Smite",
                 "description": "Calls upon divine power to smite enemies.",
@@ -198,7 +198,7 @@ class character():
             "health": 100,
             "attackModifier": 10,
             "attackDice": 5,
-            "dodgeDice": 3,
+            "AC": 7,
             "special": {
                 "name": "Bloodline Power",
                 "description": "Taps into the inherent power of the bloodline healing back health.",
@@ -226,12 +226,22 @@ class character():
         return roll
 
     # Handles the logic for reducing damage
-    def getDamageReduction(self, attacker):
+    def getDamageReduction(self, attacker, damageAmount):
         if attacker == 'player':
-            return int(round(self.RollDice(self.computer['dodgeDice']), 0))
+            if damageAmount < self.computer['AC']:
+                t.print(f"\nThe {computer['name']}'s armour deflected damage resulting in no damage being applied by you, the {player['name']}!")
+                return damageAmount
+            else:
+                t.print(f"\nThe {computer['name']}'s armour stood no chance deflected damage resulting in {damageAmount} dmg being applied by you, the {player['name']}!")
+                return 0
 
         elif attacker == 'computer':
-            return int(round(self.RollDice(self.player['dodgeDice']), 0))
+            if damageAmount < self.player['AC']:
+                t.print(f"\nYou, the {player['name']}'s armour deflected damage resulting in no damage being applied by the {computer['name']}!")
+                return damageAmount
+            else:
+                t.print(f"\nYou, the {player['name']}'s armour stood no chance deflected damage resulting in {damageAmount} dmg being applied by the {computer['name']}!")
+                return 0
 
     # Handles the logic for damaging a character
     def getAttackDamage(self, attacker, needsReduction):
@@ -244,7 +254,7 @@ class character():
             damage = int(round(self.RollDice(self.computer['attackDice']) + self.computer['attackModifier'], 0))
 
         if needsReduction:
-            damage -= self.getDamageReduction(attacker)
+            damage -= self.getDamageReduction(attacker, damage)
 
         return damage
 
@@ -266,8 +276,6 @@ class character():
             # handles the calculations for what happens if this choice is chosen
             computerDamage = self.getAttackDamage('player', False)
             playerDamage = self.getAttackDamage('computer', False)
-            # computer['health'] -= computerDamage
-            # player['health'] -= playerDamage
 
             # tells the user what happened
             t.print(f"\nYou and the {self.computer['name']} both attacked each other resulting in both of you taking damage!")
@@ -280,7 +288,6 @@ class character():
         elif moveType == 1 and computerChoice == 0:
             # handles the calculations for what happens if this choice is chosen
             computerDamage = self.getAttackDamage('player', True)
-            # computer['health'] -= computerDamage
             playerDamage = 0
 
             # tells the user what happened
@@ -374,7 +381,7 @@ while playing:
             splitPlayerChoice = playerChoice.split(" ")
             if len(splitPlayerChoice) > 1 and characterClass['name'] == splitPlayerChoice[0].lower() and splitPlayerChoice[1].lower() == '-i':
                 # Tells the user the stats of the character including the special ability
-                t.print(f"\nThe {characterClass['name'].capitalize()}'s stats include:\n     Health: {characterClass['health']}\n     Minimum Attack: {characterClass['attackModifier'] + 1}\n     Maximum Attack: {characterClass['attackModifier'] + characterClass['attackDice']}\n     Maximum Dodged Damage: {characterClass['dodgeDice']}\nSpecial Ability Information:\n     Name: {characterClass['special']['name']}\n     Description: {characterClass['special']['description']}\n     {'Heals self by: ' + str(characterClass['special']['value']) + 'hp' if characterClass['special']['type'] == 0 else 'Damages opponent by: ' + str(characterClass['special']['value']) + 'hp'}")
+                t.print(f"\nThe {characterClass['name'].capitalize()}'s stats include:\n     Health: {characterClass['health']}\n     Minimum Attack: {characterClass['attackModifier'] + 1}\n     Maximum Attack: {characterClass['attackModifier'] + characterClass['attackDice']}\n     Armour Class: {characterClass['AC']}\nSpecial Ability Information:\n     Name: {characterClass['special']['name']}\n     Description: {characterClass['special']['description']}\n     {'Heals self by: ' + str(characterClass['special']['value']) + 'hp' if characterClass['special']['type'] == 0 else 'Damages opponent by: ' + str(characterClass['special']['value']) + 'hp'}")
                 t.print("\nNOTE: THESE STATS CHANGE SLIGHTLY BASED ON DIFFICULTY SELECTED IN NEXT QUESTION!")
 
                 # sets an info flag = True to be used later
@@ -436,13 +443,13 @@ while playing:
             player['health'] += 20
             player['attackModifier'] += 2
             player['attackDice'] += 1
-            player['dodgeDice'] += 1
+            player['AC'] += 1
             player['special']['value'] += 5
 
             computer['health'] -= 10
             computer['attackModifier'] -= 2
             computer['attackDice'] -= 1
-            computer['dodgeDice'] -= 1
+            computer['AC'] -= 1
 
             done = True
             break
@@ -455,13 +462,13 @@ while playing:
             player['health'] -= 20
             player['attackModifier'] -= 2
             player['attackDice'] -= 1
-            player['dodgeDice'] -= 1
+            player['AC'] -= 1
             player['special']['value'] -= 5
 
             computer['health'] += 10
             computer['attackModifier'] += 2
             computer['attackDice'] += 1
-            computer['dodgeDice'] += 1
+            computer['AC'] += 1
 
             done = True
             break
@@ -471,8 +478,8 @@ while playing:
             difficulty = t.input("\nChoose the difficulty level ['Easy', 'Medium', 'Hard']: ")
 
     # tells the user the stats of themself and their opponent
-    t.print(f"\nYou will be playing as the {random.choice(adjectives)} {player['name'].capitalize()}. Your stats are:\nHealth: {player['health']} hp\nMinimum Attack: {player['attackModifier'] + 1} dmg\nMaximum Attack: {player['attackModifier'] + player['attackDice']} dmg\nMaximum Dodged Damage: {player['dodgeDice']} dmg\nSpecial Ability Information:\n     Name: {characterClass['special']['name']}\n     Description: {characterClass['special']['description']}\n     {'Heals self by: ' + str(characterClass['special']['value']) + 'hp' if characterClass['special']['type'] == 0 else 'Damages opponent by: ' + str(characterClass['special']['value']) + 'hp'}")
-    t.print(f"\nYour opponent will be the {random.choice(adjectives)} {computer['name'].capitalize()}. Their stats are:\nHealth: {computer['health']} hp\nMinimum Attack: {computer['attackModifier'] + 1} dmg\nMaximum Attack: {computer['attackModifier'] + computer['attackDice']} dmg\nMaximum Dodged Damage: {computer['dodgeDice']} dmg")
+    t.print(f"\nYou will be playing as the {random.choice(adjectives)} {player['name'].capitalize()}. Your stats are:\nHealth: {player['health']} hp\nMinimum Attack: {player['attackModifier'] + 1} dmg\nMaximum Attack: {player['attackModifier'] + player['attackDice']} dmg\nArmour Class: {player['AC']} dmg\nSpecial Ability Information:\n     Name: {characterClass['special']['name']}\n     Description: {characterClass['special']['description']}\n     {'Heals self by: ' + str(characterClass['special']['value']) + 'hp' if characterClass['special']['type'] == 0 else 'Damages opponent by: ' + str(characterClass['special']['value']) + 'hp'}")
+    t.print(f"\nYour opponent will be the {random.choice(adjectives)} {computer['name'].capitalize()}. Their stats are:\nHealth: {computer['health']} hp\nMinimum Attack: {computer['attackModifier'] + 1} dmg\nMaximum Attack: {computer['attackModifier'] + computer['attackDice']} dmg\nArmour Class: {computer['AC']} dmg")
     
     # initiates a countdown timer until it is time to play
     time.sleep(1.5)
@@ -487,9 +494,16 @@ while playing:
     t.print(f"\n\n\n\n\n\n\n\nThe {computer['name']} approaches you looking {random.choice(adjectives)} as ever.")
     t.print(f"You, the {player['name']}, are feeling {random.choice(adjectives)} and are ready to fight.")
 
+    # resets the rounds counter for future a playthrough
+    rounds = 0
+
     # this loop runs as long as the player and computer health is above 0 otherwise it will break
     # this is basically the main loop for the game
     while computer["health"] > 0 and player["health"] > 0:
+        # First round of the game
+        rounds += 1
+        t.print(f"\n\nRound #{rounds}")
+
         # tells the current stats of the player and computer
         t.print(f"You have:\n    {player['health']} hp")
         t.print(f"The {computer['name']} has:\n    {computer['health']} hp")
@@ -508,9 +522,6 @@ while playing:
                 player['health'] -= playerDamage
                 computer['health'] -= computerDamage
 
-                rounds += 1
-                t.print(f"\n\nRound #{rounds}")
-
                 break
             elif playerChoice.upper() == 'D' or playerChoice.upper() == 'DODGE':
                 # calls the function to do a new turn in the 'dodge' modifier (0)
@@ -519,9 +530,6 @@ while playing:
                 # Subtracts health for both the computer and the player
                 player['health'] -= playerDamage
                 computer['health'] -= computerDamage
-
-                rounds += 1
-                t.print(f"\n\nRound #{rounds}")
 
                 break
 
