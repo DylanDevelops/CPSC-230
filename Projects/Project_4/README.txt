@@ -51,4 +51,8 @@ player and the computer's health reach 0 simultaneously.
 they choose to play again, the game restarts with the character and difficulty 
 selection. If they choose to exit, the game ends.
 
+    For project part 4, I successfully allowed for the enemy to have a special ability.
+When the enemy is using their special ability, the player is unable to play a move
+just as I had previously implemented with the player.
+
 -----------------------------------------------

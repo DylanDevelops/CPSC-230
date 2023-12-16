@@ -1,0 +1,613 @@
+--- BEGINNING OF SESSION ---
+
+Welcome to the arena! Before we let you into battle, you are going to have to choose a character!
+The character you choose is going to be an important role in how you play so choose wisely.
+
+Please enter the class of the character you would like to play as.
+The options are the Cleric, Barbarian, Druid, Monk, Warlock, Bard, Wizard, Ranger, Paladin, and Sorcerer.
+To get statistics on these characters, type their name plus -i. (Ex: Wizard -i)
+To let the arena choose a character for you, type 'RANDOM'
+Your choice: wizard -i
+
+The Wizard's stats include:
+     Health: 85
+     Minimum Attack: 9
+     Maximum Attack: 14
+     Armour Class: 12
+Special Ability Information:
+     Name: Arcane Blast
+     Description: Unleashes a powerful blast of arcane energy.
+     Damages opponent by: 20hp
+
+NOTE: THESE STATS CHANGE SLIGHTLY BASED ON DIFFICULTY SELECTED IN NEXT QUESTION!
+
+Please enter the class of the character you would like to play as.
+The options are the Cleric, Barbarian, Druid, Monk, Warlock, Bard, Wizard, Ranger, Paladin, and Sorcerer.
+To get statistics on these characters, type their name plus -i. (Ex: Wizard -i)
+To let the arena choose a character for you, type 'RANDOM'
+Your choice: paladin -i
+
+The Paladin's stats include:
+     Health: 130
+     Minimum Attack: 14
+     Maximum Attack: 16
+     Armour Class: 6
+Special Ability Information:
+     Name: Divine Smite
+     Description: Calls upon divine power to smite enemies.
+     Damages opponent by: 25hp
+
+NOTE: THESE STATS CHANGE SLIGHTLY BASED ON DIFFICULTY SELECTED IN NEXT QUESTION!
+
+Please enter the class of the character you would like to play as.
+The options are the Cleric, Barbarian, Druid, Monk, Warlock, Bard, Wizard, Ranger, Paladin, and Sorcerer.
+To get statistics on these characters, type their name plus -i. (Ex: Wizard -i)
+To let the arena choose a character for you, type 'RANDOM'
+Your choice: paladin
+
+Give your paladin a name: Dylan
+
+Perfect! You, the paladin, are now named Dylan.
+
+Choose the difficulty level ['Easy', 'Medium', 'Hard']: medium
+
+You will be playing as the enraged Paladin. Your stats are:
+Health: 130 hp
+Minimum Attack: 14 dmg
+Maximum Attack: 16 dmg
+Armour Class: 6 dmg
+Special Ability Information:
+     Name: Divine Smite
+     Description: Calls upon divine power to smite enemies.
+     Damages opponent by: 25hp
+
+Your opponent will be the depressed Warlock. Their stats are:
+Health: 110 hp
+Minimum Attack: 12 dmg
+Maximum Attack: 16 dmg
+Armour Class: 8 dmg
+Special Ability Information:
+     Name: Dark Pact
+     Description: Calls upon a dark entity to deal damage.
+     Damages opponent by: 20hp
+
+3
+2
+1
+
+
+
+
+
+
+
+
+The warlock approaches you looking enraged as ever.
+You, the paladin, are feeling sweaty and are ready to fight.
+
+
+Round #1
+You have:
+    130 hp
+The warlock has:
+    110 hp
+
+Would you like to attack, dodge, or use your single use special ability?
+Enter your choice (A), (D), or (S): d
+
+The warlock did something viscus... They used Dark Pact on you, the Paladin
+They attacked you resulting in you taking 20 dmg!
+
+No matter what you, the paladin tried to do, it was useless and your move this round didn't count!
+
+
+Round #2
+You have:
+    110 hp
+The warlock has:
+    110 hp
+
+Would you like to attack, dodge, or use your single use special ability?
+Enter your choice (A), (D), or (S): a
+
+
+
+
+
+
+
+
+
+
+You rolled the lowest roll :(
+
+
+You and the warlock both attacked each other resulting in both of you taking damage!
+You dealt 15 damage while the warlock dealt 12 damage.
+
+
+Round #3
+You have:
+    98 hp
+The warlock has:
+    95 hp
+
+Would you like to attack, dodge, or use your single use special ability?
+Enter your choice (A), (D), or (S): a
+
+
+
+
+
+
+
+
+
+
+You and the warlock both attacked each other resulting in both of you taking damage!
+You dealt 15 damage while the warlock dealt 13 damage.
+
+
+Round #4
+You have:
+    85 hp
+The warlock has:
+    80 hp
+
+Would you like to attack, dodge, or use your single use special ability?
+Enter your choice (A), (D), or (S): a
+
+
+
+
+
+
+
+
+
+
+You rolled the highest roll :)
+
+
+The warlock's armour stood no chance deflected damage resulting in 16 dmg being applied by you, the paladin!
+
+You attacked the warlock while they dodged! They took 16 damage.
+
+
+Round #5
+You have:
+    85 hp
+The warlock has:
+    64 hp
+
+Would you like to attack, dodge, or use your single use special ability?
+Enter your choice (A), (D), or (S): a
+
+
+
+
+
+
+
+
+
+
+You rolled the highest roll :)
+
+
+The warlock's armour stood no chance deflected damage resulting in 16 dmg being applied by you, the paladin!
+
+You attacked the warlock while they dodged! They took 16 damage.
+
+
+Round #6
+You have:
+    85 hp
+The warlock has:
+    48 hp
+
+Would you like to attack, dodge, or use your single use special ability?
+Enter your choice (A), (D), or (S): a
+
+
+
+
+
+
+
+
+
+
+You rolled the highest roll :)
+
+
+The warlock's armour stood no chance deflected damage resulting in 16 dmg being applied by you, the paladin!
+
+You attacked the warlock while they dodged! They took 16 damage.
+
+
+Round #7
+You have:
+    85 hp
+The warlock has:
+    32 hp
+
+Would you like to attack, dodge, or use your single use special ability?
+Enter your choice (A), (D), or (S): d
+
+
+
+
+
+
+
+
+
+
+You and the warlock both dodged each other resulting in no one taking damage!
+
+
+Round #8
+You have:
+    85 hp
+The warlock has:
+    32 hp
+
+Would you like to attack, dodge, or use your single use special ability?
+Enter your choice (A), (D), or (S): s
+
+You did something nerdy... You used Divine Smite on the Warlock
+You attacked the warlock, taking 25 hp from them!
+
+No matter what the warlock tried to do, it was useless and they didn't get a hit in this round.
+
+
+Round #9
+You have:
+    85 hp
+The warlock has:
+    7 hp
+
+Would you like to attack or dodge?
+Enter your choice (A) or (D): a
+
+
+
+
+
+
+
+
+
+
+You and the warlock both attacked each other resulting in both of you taking damage!
+You dealt 15 damage while the warlock dealt 15 damage.
+
+
+
+
+
+
+
+
+As you, Dylan, were fighting, all of a sudden the warlock fell to the ground...
+You walked up to the sweaty warlock as they laid on the ground looking back up to you.
+You looked down at the warlock and said, "Your evil has been vanquished by the power of righteousness!"
+The warlock raised their head to look up at you and said, "I have been defeated, but the light will always triumph over darkness."
+You took one last look at the warlock before finishing them off.
+You, the paladin, were triumphant. You were victorious. You felt depressed.
+You, Dylan, left the arena feeling more powerful than you ever had before. Would you retire or fight again?
+
+
+Will you fight again? Type 'Continue' to play again or 'Exit' to exit the arena: continue
+
+Welcome to the arena! Before we let you into battle, you are going to have to choose a character!
+The character you choose is going to be an important role in how you play so choose wisely.
+
+Please enter the class of the character you would like to play as.
+The options are the Cleric, Barbarian, Druid, Monk, Warlock, Bard, Wizard, Ranger, Paladin, and Sorcerer.
+To get statistics on these characters, type their name plus -i. (Ex: Wizard -i)
+To let the arena choose a character for you, type 'RANDOM'
+Your choice: Cleric -i
+
+The Cleric's stats include:
+     Health: 100
+     Minimum Attack: 11
+     Maximum Attack: 15
+     Armour Class: 13
+Special Ability Information:
+     Name: Divine Intervention
+     Description: Calls upon divine power to heal wounds.
+     Heals self by: 50hp
+
+NOTE: THESE STATS CHANGE SLIGHTLY BASED ON DIFFICULTY SELECTED IN NEXT QUESTION!
+
+Please enter the class of the character you would like to play as.
+The options are the Cleric, Barbarian, Druid, Monk, Warlock, Bard, Wizard, Ranger, Paladin, and Sorcerer.
+To get statistics on these characters, type their name plus -i. (Ex: Wizard -i)
+To let the arena choose a character for you, type 'RANDOM'
+Your choice: ranger -i
+
+The Ranger's stats include:
+     Health: 100
+     Minimum Attack: 11
+     Maximum Attack: 15
+     Armour Class: 7
+Special Ability Information:
+     Name: Nature's Blessing
+     Description: Calls upon the power of nature to heal.
+     Heals self by: 20hp
+
+NOTE: THESE STATS CHANGE SLIGHTLY BASED ON DIFFICULTY SELECTED IN NEXT QUESTION!
+
+Please enter the class of the character you would like to play as.
+The options are the Cleric, Barbarian, Druid, Monk, Warlock, Bard, Wizard, Ranger, Paladin, and Sorcerer.
+To get statistics on these characters, type their name plus -i. (Ex: Wizard -i)
+To let the arena choose a character for you, type 'RANDOM'
+Your choice: ranger
+
+Give your ranger a name: Mr. Steele
+
+Perfect! You, the ranger, are now named Mr. Steele.
+
+Choose the difficulty level ['Easy', 'Medium', 'Hard']: Hard
+
+You will be playing as the gluttonous Ranger. Your stats are:
+Health: 80 hp
+Minimum Attack: 9 dmg
+Maximum Attack: 12 dmg
+Armour Class: 6 dmg
+Special Ability Information:
+     Name: Nature's Blessing
+     Description: Calls upon the power of nature to heal.
+     Heals self by: 15hp
+
+Your opponent will be the gluttonous Barbarian. Their stats are:
+Health: 130 hp
+Minimum Attack: 15 dmg
+Maximum Attack: 21 dmg
+Armour Class: 9 dmg
+Special Ability Information:
+     Name: Rage
+     Description: Enters a state of rage, increasing attack power.
+     Damages opponent by: 25hp
+
+3
+2
+1
+
+
+
+
+
+
+
+
+The barbarian approaches you looking mysterious as ever.
+You, the ranger, are feeling brave and are ready to fight.
+
+
+Round #1
+You have:
+    80 hp
+The barbarian has:
+    130 hp
+
+Would you like to attack, dodge, or use your single use special ability?
+Enter your choice (A), (D), or (S): a
+
+
+
+
+
+
+
+
+
+
+You rolled the highest roll :)
+
+
+The barbarian's armour stood no chance deflected damage resulting in 15 dmg being applied by you, the ranger!
+
+You attacked the barbarian while they dodged! They took 15 damage.
+
+
+Round #2
+You have:
+    80 hp
+The barbarian has:
+    115 hp
+
+Would you like to attack, dodge, or use your single use special ability?
+Enter your choice (A), (D), or (S): a
+
+The barbarian did something powerful... They used Rage on you, the Ranger
+They attacked you resulting in you taking 25 dmg!
+
+No matter what you, the ranger tried to do, it was useless and your move this round didn't count!
+
+
+Round #3
+You have:
+    55 hp
+The barbarian has:
+    115 hp
+
+Would you like to attack, dodge, or use your single use special ability?
+Enter your choice (A), (D), or (S): d
+
+
+
+
+
+
+
+
+
+
+You, the ranger's armour stood no chance deflected damage resulting in 17 dmg being applied by the barbarian!
+
+The barbarian attacked while you dodged! You took 17 damage.
+
+
+Round #4
+You have:
+    38 hp
+The barbarian has:
+    115 hp
+
+Would you like to attack, dodge, or use your single use special ability?
+Enter your choice (A), (D), or (S): s
+
+You did something enraged... You used Nature's Blessing to heal yourself!
+You healed yourself by 15 hp!
+
+No matter what the barbarian tried to do, it was useless and they didn't get a hit in this round.
+
+
+Round #5
+You have:
+    53 hp
+The barbarian has:
+    115 hp
+
+Would you like to attack or dodge?
+Enter your choice (A) or (D): a
+
+
+
+
+
+
+
+
+
+
+You rolled the lowest roll :(
+
+
+You and the barbarian both attacked each other resulting in both of you taking damage!
+You dealt 14 damage while the barbarian dealt 13 damage.
+
+
+Round #6
+You have:
+    40 hp
+The barbarian has:
+    101 hp
+
+Would you like to attack or dodge?
+Enter your choice (A) or (D): a
+
+
+
+
+
+
+
+
+
+
+The barbarian's armour stood no chance deflected damage resulting in 14 dmg being applied by you, the ranger!
+
+You attacked the barbarian while they dodged! They took 14 damage.
+
+
+Round #7
+You have:
+    40 hp
+The barbarian has:
+    87 hp
+
+Would you like to attack or dodge?
+Enter your choice (A) or (D): d
+
+
+
+
+
+
+
+
+
+
+You rolled the lowest roll :(
+
+
+You, the ranger's armour stood no chance deflected damage resulting in 13 dmg being applied by the barbarian!
+
+The barbarian attacked while you dodged! You took 13 damage.
+
+
+Round #8
+You have:
+    27 hp
+The barbarian has:
+    87 hp
+
+Would you like to attack or dodge?
+Enter your choice (A) or (D): d
+
+
+
+
+
+
+
+
+
+
+You, the ranger's armour stood no chance deflected damage resulting in 17 dmg being applied by the barbarian!
+
+The barbarian attacked while you dodged! You took 17 damage.
+
+
+Round #9
+You have:
+    10 hp
+The barbarian has:
+    87 hp
+
+Would you like to attack or dodge?
+Enter your choice (A) or (D): a
+
+
+
+
+
+
+
+
+
+
+You rolled the lowest roll :(
+
+
+You and the barbarian both attacked each other resulting in both of you taking damage!
+You dealt 13 damage while the barbarian dealt 13 damage.
+
+
+
+
+
+
+
+
+As you were fighting, all of a sudden a cold feeling rushed into your head.
+You, Mr. Steele, the ranger fell to the ground. Overcome with fear, you watched as the barbarian walked over to you.
+The barbarian looked down at you and said, "You fought well, but strength alone cannot overcome skill."
+Even though you knew it was over, you looked up at the barbarian and said, "I have been defeated, but the wilderness will always be my home."
+You, Mr. Steele took one last breath before the world went black.
+
+
+Will you fight again? Type 'Continue' to play again or 'Exit' to exit the arena: exit
+
+
+
+Thank you for playing!
+
+
+
+
+--- END OF SESSION ---

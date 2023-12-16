@@ -277,7 +277,7 @@ class character():
                 t.print(f"They healed themself by {self.computer['special']['value']} hp!")
 
                 self.computer['special']['used'] = True
-                t.print(f"\nNo matter what you, the {self.player['name']}tried to do, it was useless and your move this round didn't count.")
+                t.print(f"\nNo matter what you, the {self.player['name']} tried to do, it was useless and your move this round didn't count.")
 
                 self.computer['health'] += self.computer['special']['value']
                 return 0, 0
