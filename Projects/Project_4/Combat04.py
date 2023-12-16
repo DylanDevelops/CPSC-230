@@ -264,63 +264,91 @@ class character():
         # 1 = Attack
         # 2 = Special Ability
 
-        # the computer chooses either to dodge or attack
-        computerChoice = random.randint(0, 1)
+        # the computer choses to use their ability
+        if self.computer['special']['used'] == True:
+            computerChoosesToUseSpecial = False
+        else:
+            computerChoosesToUseSpecial = random.choice([True, False])
 
-        # # tells the user what the computer chose
-        # t.print(f"\n\n\n\n\n\n\n\nThe {computer['name']} chose to {'Dodge' if computerChoice == 0 else 'Attack'}!")
-        t.print("\n\n\n\n\n\n\n\n")
+        if computerChoosesToUseSpecial:
+            if self.computer["special"]["type"] == 0:
+                # Healing ability
+                t.print(f"\nThe {self.computer['name']} did something {random.choice(self.adjectives)}... They used {self.computer['special']['name']} to themself!")
+                t.print(f"They healed themself by {self.computer['special']['value']} hp!")
 
-        # both lose the full attack damage from their health
-        if moveType == 1 and computerChoice == 1:
-            # handles the calculations for what happens if this choice is chosen
-            computerDamage = self.getAttackDamage('player', False)
-            playerDamage = self.getAttackDamage('computer', False)
+                self.computer['special']['used'] = True
+                t.print(f"\nNo matter what you, the {self.player['name']}tried to do, it was useless and your move this round didn't count.")
 
-            # tells the user what happened
-            t.print(f"\nYou and the {self.computer['name']} both attacked each other resulting in both of you taking damage!")
-            t.print(f"You dealt {computerDamage} damage while the {self.computer['name']} dealt {playerDamage} damage.")
+                self.computer['health'] += self.computer['special']['value']
+                return 0, 0
 
-            # Returns out damage to give to the player and computer
-            return playerDamage, computerDamage
+            elif self.computer["special"]["type"] == 1:
+                # Damage Ability
+                t.print(f"\nThe {self.computer['name']} did something {random.choice(self.adjectives)}... They used {self.computer['special']['name']} on you, the {self.player['name'].capitalize()}")
+                t.print(f"They attacked you resulting in you taking {self.computer['special']['value']} dmg!")
 
-        # computer loses the player's attack damage changed by their own dodge modifier. player takes no damage
-        elif moveType == 1 and computerChoice == 0:
-            # handles the calculations for what happens if this choice is chosen
-            computerDamage = self.getAttackDamage('player', True)
-            playerDamage = 0
+                self.computer['special']['used'] = True
+                t.print(f"\nNo matter what you, the {self.player['name']} tried to do, it was useless and your move this round didn't count!")
 
-            # tells the user what happened
-            t.print(f"\nYou attacked the {self.computer['name']} while they dodged! They took {computerDamage} damage.")
+                return self.computer['special']['value'], 0
+        else:
+            # the computer chooses either to dodge or attack
+            computerChoice = random.randint(0, 1)
 
-            # Returns out damage to give to the player and computer
-            return playerDamage, computerDamage
+            # # tells the user what the computer chose
+            # t.print(f"\n\n\n\n\n\n\n\nThe {computer['name']} chose to {'Dodge' if computerChoice == 0 else 'Attack'}!")
+            t.print("\n\n\n\n\n\n\n\n")
 
-        # player loses the computer's attack damage changed by their own dodge modifier. computer takes no damage
-        elif moveType == 0 and computerChoice == 1:
-            # handles the calculations for what happens if this choice is chosen
-            playerDamage = self.getAttackDamage('computer', True)
-            # player['health'] -= playerDamage
-            computerDamage = 0
+            # both lose the full attack damage from their health
+            if moveType == 1 and computerChoice == 1:
+                # handles the calculations for what happens if this choice is chosen
+                computerDamage = self.getAttackDamage('player', False)
+                playerDamage = self.getAttackDamage('computer', False)
 
-            # tells the user what happened
-            t.print(f"\nThe {self.computer['name']} attacked while you dodged! You took {playerDamage} damage.")
+                # tells the user what happened
+                t.print(f"\nYou and the {self.computer['name']} both attacked each other resulting in both of you taking damage!")
+                t.print(f"You dealt {computerDamage} damage while the {self.computer['name']} dealt {playerDamage} damage.")
 
-            # Returns out damage to give to the player and computer
-            return playerDamage, computerDamage
+                # Returns out damage to give to the player and computer
+                return playerDamage, computerDamage
 
-        # if both the player and computer choose dodge, no one takes any damage
-        elif moveType == 0 and computerChoice == 0:
-            # no calculations are needed here because no one inflicted any damage
+            # computer loses the player's attack damage changed by their own dodge modifier. player takes no damage
+            elif moveType == 1 and computerChoice == 0:
+                # handles the calculations for what happens if this choice is chosen
+                computerDamage = self.getAttackDamage('player', True)
+                playerDamage = 0
 
-            computerDamage = 0
-            playerDamage = 0
+                # tells the user what happened
+                t.print(f"\nYou attacked the {self.computer['name']} while they dodged! They took {computerDamage} damage.")
 
-            # tells the user what happened
-            t.print(f"\nYou and the {self.computer['name']} both dodged each other resulting in no one taking damage!")
+                # Returns out damage to give to the player and computer
+                return playerDamage, computerDamage
 
-            # Returns out damage to give to the player and computer
-            return playerDamage, computerDamage
+            # player loses the computer's attack damage changed by their own dodge modifier. computer takes no damage
+            elif moveType == 0 and computerChoice == 1:
+                # handles the calculations for what happens if this choice is chosen
+                playerDamage = self.getAttackDamage('computer', True)
+                # player['health'] -= playerDamage
+                computerDamage = 0
+
+                # tells the user what happened
+                t.print(f"\nThe {self.computer['name']} attacked while you dodged! You took {playerDamage} damage.")
+
+                # Returns out damage to give to the player and computer
+                return playerDamage, computerDamage
+
+            # if both the player and computer choose dodge, no one takes any damage
+            elif moveType == 0 and computerChoice == 0:
+                # no calculations are needed here because no one inflicted any damage
+
+                computerDamage = 0
+                playerDamage = 0
+
+                # tells the user what happened
+                t.print(f"\nYou and the {self.computer['name']} both dodged each other resulting in no one taking damage!")
+
+                # Returns out damage to give to the player and computer
+                return playerDamage, computerDamage
 
 # declares two variables that will eventually be set to a copy of the chosen characters from above
 player = None
@@ -478,8 +506,8 @@ while playing:
             difficulty = t.input("\nChoose the difficulty level ['Easy', 'Medium', 'Hard']: ")
 
     # tells the user the stats of themself and their opponent
-    t.print(f"\nYou will be playing as the {random.choice(adjectives)} {player['name'].capitalize()}. Your stats are:\nHealth: {player['health']} hp\nMinimum Attack: {player['attackModifier'] + 1} dmg\nMaximum Attack: {player['attackModifier'] + player['attackDice']} dmg\nArmour Class: {player['AC']} dmg\nSpecial Ability Information:\n     Name: {characterClass['special']['name']}\n     Description: {characterClass['special']['description']}\n     {'Heals self by: ' + str(characterClass['special']['value']) + 'hp' if characterClass['special']['type'] == 0 else 'Damages opponent by: ' + str(characterClass['special']['value']) + 'hp'}")
-    t.print(f"\nYour opponent will be the {random.choice(adjectives)} {computer['name'].capitalize()}. Their stats are:\nHealth: {computer['health']} hp\nMinimum Attack: {computer['attackModifier'] + 1} dmg\nMaximum Attack: {computer['attackModifier'] + computer['attackDice']} dmg\nArmour Class: {computer['AC']} dmg")
+    t.print(f"\nYou will be playing as the {random.choice(adjectives)} {player['name'].capitalize()}. Your stats are:\nHealth: {player['health']} hp\nMinimum Attack: {player['attackModifier'] + 1} dmg\nMaximum Attack: {player['attackModifier'] + player['attackDice']} dmg\nArmour Class: {player['AC']} dmg\nSpecial Ability Information:\n     Name: {player['special']['name']}\n     Description: {player['special']['description']}\n     {'Heals self by: ' + str(player['special']['value']) + 'hp' if player['special']['type'] == 0 else 'Damages opponent by: ' + str(player['special']['value']) + 'hp'}")
+    t.print(f"\nYour opponent will be the {random.choice(adjectives)} {computer['name'].capitalize()}. Their stats are:\nHealth: {computer['health']} hp\nMinimum Attack: {computer['attackModifier'] + 1} dmg\nMaximum Attack: {computer['attackModifier'] + computer['attackDice']} dmg\nArmour Class: {computer['AC']} dmg\nSpecial Ability Information:\n     Name: {computer['special']['name']}\n     Description: {computer['special']['description']}\n     {'Heals self by: ' + str(computer['special']['value']) + 'hp' if computer['special']['type'] == 0 else 'Damages opponent by: ' + str(computer['special']['value']) + 'hp'}")
     
     # initiates a countdown timer until it is time to play
     time.sleep(1.5)
@@ -552,9 +580,6 @@ while playing:
 
                     player['special']['used'] = True
                     t.print(f"\nNo matter what the {computer['name']} tried to do, it was useless and they didn't get a hit in this round.")
-
-                    rounds += 1
-                    t.print(f"\n\nRound #{rounds}")
 
                     break
                 else:
